@@ -12,4 +12,18 @@ class Plan extends Model
         'price',
         'description'
     ];
+
+
+    ////////////////////////////////////////////////////////////////////////
+    //////////////Filtro básico dos Planos//////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////
+    public function search($filter = null)
+    {
+        $results = $this
+            ->where("name", 'LIKE', "%{$filter}%")
+            ->orWhere("description", 'LIKE', "%{$filter}%")->paginate(2);
+
+
+        return $results;
+    }
 }
