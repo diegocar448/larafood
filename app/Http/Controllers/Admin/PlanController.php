@@ -41,6 +41,37 @@ class PlanController extends Controller
         return redirect()->route("plans.index");
     }
 
+    public function edit($url)
+    {
+
+        $plan = $this->repository->where("url", $url)->first();
+
+        if (!$plan)
+            return redirect()->back();
+
+
+        return view("admin.pages.plans.edit", compact('plan'));
+    }
+
+    public function update(Request $request, $url)
+    {
+
+        $plan = $this->repository->where("url", $url)->first();
+
+
+        if (!$plan)
+            return redirect()->back();
+
+        $plan->update([
+            "name" => $request->name,
+            "price" => $request->price,
+            "url" => $request->url,
+            "description" => $request->description
+        ]);
+
+        return redirect()->route("plans.index");
+    }
+
     public function show($url)
     {
 
