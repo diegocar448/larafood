@@ -28,6 +28,14 @@
         <div class="card-body">
             <form method="POST" action="{{ route('details.plan.store', $plan->url) }}">
                 @csrf
+                @if($errors->any())
+                    <div class="alert alert-danger">
+                        @foreach($errors->all() as $error)
+                            
+                            <p>{{$error}}</p>
+                        @endforeach
+                    </div>
+                @endif
                 <div class="form-group">
                     <label for="">Nome:</label>
                     <input type="text" name="name" placeholder="Nome" class="form-control" value="{{ old('name') }}">

@@ -17,10 +17,19 @@ Route::prefix('admin')
     ->namespace('Admin')
     ->group(function () {
 
+        ////////////////////////////////////////////////////////////////////////
+        ///////////////////////Routes Profiles//////////////////////////////////
+        ////////////////////////////////////////////////////////////////////////
+        Route::any('profiles/search', 'ACL\ProfileController@search')->name("profiles.search");
+        Route::resource('profiles', 'ACL\ProfileController');
+
+
 
         ////////////////////////////////////////////////////////////////////////
         ///////////////////////Routes Details Plans/////////////////////////////
         ////////////////////////////////////////////////////////////////////////
+        Route::delete('plans/{url}/details/{idDetail}', 'DetailPlanController@destroy')->name('details.plan.destroy');
+        Route::get('plans/{url}/details/{idDetail}/show', 'DetailPlanController@show')->name('details.plan.show');
         Route::put('plans/{url}/details/{idDetail}', 'DetailPlanController@update')->name('details.plan.update');
         Route::get('plans/{url}/details/{idDetail}/edit', 'DetailPlanController@edit')->name('details.plan.edit');
         Route::post('plans/{url}/details', 'DetailPlanController@store')->name('details.plan.store');

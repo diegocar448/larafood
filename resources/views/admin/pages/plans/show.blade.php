@@ -11,6 +11,12 @@
 @section("content")
     <div class="card">
         <div class="card-body">
+            @if (session('error'))
+                <div class="alert alert-danger">
+                    {{session('error')}}
+                </div>
+            @endif
+
             <ul>
                 <li>
                     <strong> Nome </strong> {{ $plan->name }}

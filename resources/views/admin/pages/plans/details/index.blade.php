@@ -28,6 +28,11 @@
     <div class="card">
         
         <div class="cardy-body">
+            @if(session('message'))
+                <div class="alert alert-info">
+                    {{session('message')}}
+                </div>
+            @endif
             <table class="table table-condensed">
                 <thead>
                     <tr>
@@ -42,7 +47,7 @@
                         <td>{{$detail->name}}</td>               
                         <td style="width:150px;">
                             <a href="{{ route('details.plan.edit', [$plan->url, $detail->id]) }}" class="btn btn-info">Editar</a>
-                            {{-- <a href="{{ route('details.show', $detail->url) }}" class="btn btn-warning">Ver</a> --}}
+                            <a href="{{ route('details.plan.show', [$plan->url, $detail->id]) }}" class="btn btn-warning">Ver</a>
                         </td>
                     </tr>
                     @endforeach 

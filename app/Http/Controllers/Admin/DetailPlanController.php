@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Plan;
 use App\Models\DetailPlan;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Plan;
+use App\Http\Requests\StoreUpdateDetailPlan;
 
 class DetailPlanController extends Controller
 {
@@ -41,7 +42,7 @@ class DetailPlanController extends Controller
         return view("admin.pages.plans.details.create", compact('plan'));
     }
 
-    public function store(Request $request, $urlPlan)
+    public function store(StoreUpdateDetailPlan $request, $urlPlan)
     {
 
         if (!$plan = $this->plan->where("url", $urlPlan)->first()) {
@@ -74,7 +75,7 @@ class DetailPlanController extends Controller
     }
 
 
-    public function update(Request $request, $urlPlan, $idDetail)
+    public function update(StoreUpdateDetailPlan $request, $urlPlan, $idDetail)
     {
 
         $plan = $this->plan->where("url", $urlPlan)->first();
@@ -90,5 +91,33 @@ class DetailPlanController extends Controller
 
 
         return redirect()->route("details.plan.index", $plan->url);
+    }
+
+    public function show(Request $request, $urlPlan, $idDetail)
+    {
+        $plan = $this->plan->where("url", $urlPlan)->first();
+        $detail = $this->repository->find($idDetail);
+
+        if (!$plan || !$detail) {
+            return redirect()->back();
+        }
+
+
+        return view("admin.pages.plans.details.show", compact('plan', 'detail'));
+    }
+
+
+    public function destroy($urlPlan, $idDetail)
+    {
+        $plan = $this->plan->where("url", $urlPlan)->first();
+        $detail = $this->repository->find($idDetail);
+
+        if (!$plan || !$detail) {
+            return redirect()->back();
+        }
+
+        $detail->delete();
+
+        return redirect()->route("details.plan.index", $plan->url)->with('message', 'Removido com sucesso!');
     }
 }
