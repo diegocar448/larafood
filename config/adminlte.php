@@ -220,6 +220,12 @@ return [
             'icon' => 'fas fa-address-book',
             //'can'  => 'manage-blog',admin.pages.plans.profiles.index
         ],
+        [
+            'text' => 'Permissões',
+            'url'  => 'admin/permissions/',
+            'icon' => 'fas fa-lock',
+            //'can'  => 'manage-blog',admin.pages.plans.profiles.index
+        ],
 
     ],
 
