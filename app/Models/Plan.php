@@ -13,6 +13,14 @@ class Plan extends Model
         'description'
     ];
 
+    ////////////////////////////////////////////////////////////////////////
+    ////////////////////////Relacionametos//////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////
+    public function details()
+    {
+        return $this->hasMany(DetailPlan::class);
+    }
+
 
     ////////////////////////////////////////////////////////////////////////
     //////////////Filtro básico dos Planos//////////////////////////////////
@@ -21,7 +29,8 @@ class Plan extends Model
     {
         $results = $this
             ->where("name", 'LIKE', "%{$filter}%")
-            ->orWhere("description", 'LIKE', "%{$filter}%")->paginate(2);
+            ->orWhere("description", 'LIKE', "%{$filter}%")
+            ->paginate(2);
 
 
         return $results;

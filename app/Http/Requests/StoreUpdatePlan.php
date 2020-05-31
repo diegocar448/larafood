@@ -24,11 +24,13 @@ class StoreUpdatePlan extends FormRequest
     public function rules()
     {
 
+
+
         $url = $this->segment(3);
 
         //regex para garantir que haverá apenas duas casas após o ponto e que o valor será númerico
         return [
-            'name' => 'required|min:3|max:255|unique:plans,name,{$url},url',
+            'name' => "required|min:3|max:255|unique:plans,name,{$url},url",
             'description' => 'nullable|min:3|max:255',
             'price' => "required|regex:/^\d+(\.\d{1,2})?$/",
 
