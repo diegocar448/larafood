@@ -25,7 +25,7 @@ class Profile extends Model
     ////////////////////////////////////////////////////////////////////////
     /////Filtro para pegar somente as permissões ainda não selecionadas ////
     ////////////////////////////////////////////////////////////////////////
-    public function permissionsAvailable()
+    public function permissionsAvailable($filter = null)
     {
 
 
@@ -34,6 +34,11 @@ class Profile extends Model
             $query->from("permission_profile");
             $query->whereRaw("permission_profile.profile_id={$this->id}");
         })
+            ->where(function ($queryFilter) use ($filter) {
+                if ($filter)
+                    $queryFilter->where("permissions.name", "LIKE", "%{$filter}%");
+            })
+            //->where("permission_profile_profile_id", "LIKE", $this->id)
             ->paginate(2);
 
 
