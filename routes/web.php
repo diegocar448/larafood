@@ -18,12 +18,25 @@ Route::prefix('admin')
     ->group(function () {
 
         ////////////////////////////////////////////////////////////////////////
+        ///////////////////////Plan x Profile/////////////////////////////
+        ////////////////////////////////////////////////////////////////////////
+        Route::get('plans/{id}/profile/{idProfile}/detach', "ACL\PlanProfileController@detachProfilePlan")->name('plans.profile.detach');
+        Route::post('plans/{id}/profiles/store', "ACL\PlanProfileController@attachProfilesPlan")->name('plans.profiles.attach');
+        Route::any('plans/{id}/profiles/create', "ACL\PlanProfileController@profilesAvailable")->name('plans.profiles.available');
+        Route::get('plans/{id}/profiles', "ACL\PlanProfileController@profiles")->name('plans.profiles');
+        Route::get('profiles/{id}/plans', "ACL\PlanProfileController@plans")->name('profiles.plans');
+        //Route::any('profile/{id}/plans/create/search', "ACL\PlanProfileController@filterplansAvailable")->name('plans.plans.available.search');
+
+
+        ////////////////////////////////////////////////////////////////////////
         ///////////////////////Permission x Profile/////////////////////////////
         ////////////////////////////////////////////////////////////////////////
-        Route::post('profile/{id}/permissions/store', "ACL\PermissionProfileController@attachPermissionsProfile")->name('profiles.permissions.attach');
+        Route::get('profiles/{id}/permission/{idPermission}/detach', "ACL\PermissionProfileController@detachPermissionsProfile")->name('profiles.permission.detach');
+        Route::post('profiles/{id}/permissions/store', "ACL\PermissionProfileController@attachPermissionsProfile")->name('profiles.permissions.attach');
         //Route::any('profile/{id}/permissions/create/search', "ACL\PermissionProfileController@filterPermissionsAvailable")->name('profiles.permissions.available.search');
-        Route::any('profile/{id}/permissions/create', "ACL\PermissionProfileController@permissionsAvailable")->name('profiles.permissions.available');
-        Route::get('profile/{id}/permissions', "ACL\PermissionProfileController@permissions")->name('profiles.permissions');
+        Route::any('profiles/{id}/permissions/create', "ACL\PermissionProfileController@permissionsAvailable")->name('profiles.permissions.available');
+        Route::get('profiles/{id}/permissions', "ACL\PermissionProfileController@permissions")->name('profiles.permissions');
+        Route::get('permissions/{id}/profile', "ACL\PermissionProfileController@profiles")->name('permissions.profiles');
 
 
 
