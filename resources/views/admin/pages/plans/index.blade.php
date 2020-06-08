@@ -38,7 +38,7 @@
                     <tr>
                         <th>Nome</th>
                         <th>Preço</th>
-                        <th style="width:250px;">Ações</th>
+                        <th style="width:290px;">Ações</th>
                     </tr>
                 </thead>
                 <tbody>
