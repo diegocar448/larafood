@@ -1,6 +1,10 @@
 <?php
 
 
+/* use PlansTableSeeder;
+use TenantsTableSeeder;
+use UsersTableSeeder; */
+
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -15,6 +19,10 @@ class DatabaseSeeder extends Seeder
     {
 
 
-        $this->call(UsersTableSeeder::class);
+        $this->call([
+            PlansTableSeeder::class,
+            TenantsTableSeeder::class,
+            UsersTableSeeder::class,
+        ]);
     }
 }
