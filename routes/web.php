@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('admin')
     ->namespace('Admin')
+    ->middleware('auth')
     ->group(function () {
 
         ////////////////////////////////////////////////////////////////////////
@@ -110,3 +111,13 @@ Auth::routes(['register' => false]);
 
 
 //Route::get('/home', 'HomeController@index')->name('home');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Auth::routes();
+
+Route::get('/home', function () {
+    return view('home');
+})->name('home')->middleware('auth');
