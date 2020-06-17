@@ -14,10 +14,43 @@
 @section('auth_header', __('adminlte::adminlte.register_message'))
 
 @section('auth_body')
-    <form action="{{ $register_url }}" method="post">
+    <form action="{{ route('register') }}" method="post">
         {{ csrf_field() }}
 
-        {{-- Name field --}}
+        <p><strong>Plano:</strong> {{ session('plan')->name ?? '' }}</p>        
+
+        {{-- Empresa field --}}        
+        <div class="input-group mb-3">
+            <input type="text" name="empresa" class="form-control {{ $errors->has('empresa') ? 'is-invalid' : '' }}"
+                   value="{{ old('empresa') }}" placeholder="Empresa" autofocus>
+            <div class="input-group-append">
+                <div class="input-group-text">
+                    <span class="fas fa-user {{ config('adminlte.classes_auth_icon', '') }}"></span>
+                </div>
+            </div>
+            @if($errors->has('empresa'))
+                <div class="invalid-feedback">
+                    <strong>{{ $errors->first('empresa') }}</strong>
+                </div>
+            @endif
+        </div>
+
+        {{-- cnpj field --}}        
+        <div class="input-group mb-3">
+            <input type="text" name="cnpj" class="form-control {{ $errors->has('cnpj') ? 'is-invalid' : '' }}"
+                   value="{{ old('cnpj') }}" placeholder="CNPJ" autofocus>
+            <div class="input-group-append">
+                <div class="input-group-text">
+                    <span class="fas fa-user {{ config('adminlte.classes_auth_icon', '') }}"></span>
+                </div>
+            </div>
+            @if($errors->has('cnpj'))
+                <div class="invalid-feedback">
+                    <strong>{{ $errors->first('cnpj') }}</strong>
+                </div>
+            @endif
+        </div>
+        
         <div class="input-group mb-3">
             <input type="text" name="name" class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}"
                    value="{{ old('name') }}" placeholder="{{ __('adminlte::adminlte.full_name') }}" autofocus>
