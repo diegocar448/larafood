@@ -7,6 +7,7 @@ use Illuminate\Support\Str;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use App\Providers\RouteServiceProvider;
+use App\Services\TenantService;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
@@ -30,7 +31,8 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    //protected $redirectTo = RouteServiceProvider::HOME;
+    protected $redirectTo = "/admin";
 
     /**
      * Create a new controller instance.
@@ -71,23 +73,16 @@ class RegisterController extends Controller
             return redirect()->route('site.home');
         }
 
-        $tenant = $plan->tenants()->create([
-            'cnpj' => $data['cnpj'],
-            'name' => $data['empresa'],
-            'url' => Str::kebab($data['empresa']),
-            'email' => $data['email'],
+        $tenantService = app(TenantService::class);
 
-            'subscription' => now(),
-            'expires_at' => now()->addDays(7),
-        ]);
-
-        $user = $tenant->users()->create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => bcrypt($data['password']),
-        ]);
+        ///////////////////////////////////////////////////////////
+        ////////////Retornará o usuário cadastrado/////////////////
+        ///////////////////////////////////////////////////////////
+        $user = $tenantService->make($plan, $data);
 
         return $user;
+
+
 
 
         /* return User::create([
