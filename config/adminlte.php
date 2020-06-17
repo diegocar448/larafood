@@ -254,6 +254,12 @@ return [
             'url'  => 'admin/users/',
             'icon' => 'fas fa-users',
             //'can'  => 'manage-blog',admin.pages.plans.profiles.index
+        ],
+        [
+            'text' => 'Categorias',
+            'url'  => 'admin/categories/',
+            'icon' => 'fas fa-layer-group',
+            //'can'  => 'manage-blog',admin.pages.plans.profiles.index
         ]
     ],
 
