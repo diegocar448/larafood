@@ -11,6 +11,7 @@ class Tenant extends Model
     protected $fillable = [
         'cnpj',
         'name',
+        'uuid',
         'url',
         'email',
         'logo',
