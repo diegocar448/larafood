@@ -6,6 +6,8 @@ use App\Models\Tenant;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\Builder;
+
 
 class User extends Authenticatable
 {
@@ -37,6 +39,30 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    ///////////////////////////////////////////////////////////
+    ///////queryScoped(Global) versão 7 booted e 6 boot////////
+    ///////////////////////////////////////////////////////////
+    /* protected static function booted()
+    {
+        static::addGlobalScope('tenant', function (Builder $builder) {
+            $builder->where('tenant_id', auth()->user()->tenant_id);
+        });
+    } */
+
+
+
+    ///////////////////////////////////////////////////////////
+    ///////queryScoped(Local) versão 7 booted e 6 boot/////////
+    ///////////////////////////////////////////////////////////
+    public function scopeTenantUser(Builder $query)
+    {
+        return $query->where('tenant_id', auth()->user()->tenant_id);
+    }
+
+
+
+
 
     ///////////////////////////////////////////////////////////
     ///////////////////User X Tenant///////////////////////////
