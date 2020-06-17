@@ -248,6 +248,12 @@ return [
             'url'  => 'admin/permissions/',
             'icon' => 'fas fa-lock',
             //'can'  => 'manage-blog',admin.pages.plans.profiles.index
+        ],
+        [
+            'text' => 'Usuários',
+            'url'  => 'admin/users/',
+            'icon' => 'fas fa-users',
+            //'can'  => 'manage-blog',admin.pages.plans.profiles.index
         ]
     ],
 
