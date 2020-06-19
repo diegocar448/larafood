@@ -260,6 +260,12 @@ return [
             'url'  => 'admin/categories/',
             'icon' => 'fas fa-layer-group',
             //'can'  => 'manage-blog',admin.pages.plans.profiles.index
+        ],
+        [
+            'text' => 'Produtos',
+            'url'  => 'admin/products/',
+            'icon' => 'fas fa-layer-group',
+            //'can'  => 'manage-blog',admin.pages.plans.profiles.index
         ]
     ],
 
