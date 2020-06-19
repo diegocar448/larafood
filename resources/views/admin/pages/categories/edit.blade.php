@@ -1,10 +1,10 @@
 @extends('adminlte::page')
 
-@section('title', "Editar Categorias {$category->name}")
+@section('title', "Editar Categoria {$category->name}")
 
 @section('content_header')
 <div class="container">
-    <h1>Editar Categorias </h1>
+    <h1>Editar Categoria {{ $category->name }}</h1>
 </div>
 
 @stop
@@ -28,6 +28,11 @@
                 <div class="form-group">
                     <label for="name">Nome:</label>
                     <input type="text" name="name" class="form-control" placeholder="Nome:" value="{{ $category->name ?? old('name') }}">
+                </div>
+
+                <div class="form-group">
+                    <label for="url">URL:</label>
+                    <input type="text" name="url" class="form-control" placeholder="URL:" value="{{ $category->url ?? old('url') }}">
                 </div>
                 
                 <div class="form-group">

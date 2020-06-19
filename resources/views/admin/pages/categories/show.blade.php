@@ -1,10 +1,10 @@
 @extends('adminlte::page')
 
-@section('title', "Detalhes do usuário {$user->name}")
+@section('title', "Detalhes da Categoria {$category->name}")
 
 @section('content_header')
 <div class="container">
-    <h1>Detalhes do Usuário <b>{{ $user->name }}</b></h1> 
+    <h1>Detalhes da Categoria <b>{{ $category->name }}</b></h1> 
 </div>
 @stop
 
@@ -19,20 +19,24 @@
 
             <ul>
                 <li>
-                    <strong> Nome </strong> {{ $user->name }}
-                </li>
+                    <strong> Nome: </strong> {{ $category->name }}
+                </li>                                                      
+            </ul>
+            <ul>
                 <li>
-                    <strong> Email </strong> {{ $user->email }}
-                </li>               
+                    <strong> URL: </strong> {{ $category->url }}
+                </li>                                                      
+            </ul>
+            <ul>
                 <li>
-                    <strong> Tenant </strong> {{ $user->tenant->name }}
-                </li>               
+                    <strong> Descrição: </strong> {{ $category->description }}
+                </li>                                                      
             </ul>
 
-            <form action="{{ route("users.destroy", $user->id) }}" method="POST">
+            <form action="{{ route("categories.destroy", $category->id) }}" method="POST">
                 @csrf
                 @method('DELETE')
-                <input type="submit" value="Remover o Usuário" class="btn btn-danger">
+                <input type="submit" value="Remover Categoria" class="btn btn-danger">
             </form>
         </div>
     </div>

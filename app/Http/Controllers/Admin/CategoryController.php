@@ -62,7 +62,13 @@ class CategoryController extends Controller
      */
     public function show($id)
     {
-        //
+        if (!$category = $this->repository->find($id)) {
+            return redirect()->back();
+        }
+
+
+
+        return view("admin.pages.categories.show", compact('category'));
     }
 
     /**
@@ -73,7 +79,11 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        if (!$category = $this->repository->find($id)) {
+            return redirect()->back();
+        }
+
+        return view("admin.pages.categories.edit", compact('category'));
     }
 
     /**
@@ -85,7 +95,13 @@ class CategoryController extends Controller
      */
     public function update(StoreUpdateCategory $request, $id)
     {
-        //
+        if (!$category = $this->repository->find($id)) {
+            return redirect()->back();
+        }
+
+        $category->update($request->all());
+
+        return redirect()->route('categories.index');
     }
 
     /**
@@ -96,6 +112,12 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        if (!$category = $this->repository->find($id)) {
+            return redirect()->back();
+        }
+
+        $category->delete();
+
+        return redirect()->route('categories.index');
     }
 }
