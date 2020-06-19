@@ -120,4 +120,21 @@ class CategoryController extends Controller
 
         return redirect()->route('categories.index');
     }
+
+    public function search(Request $request)
+    {
+
+        $filters = $request->only("filter");
+
+        $categories = $this->repository->where(function ($query) use ($request) {
+            if ($request->filter) {
+                $query->orWhere('description', 'LIKE', "%{$request->filter}%");
+                $query->orWhere('name', $request->filter);
+            }
+        })
+            ->latest()
+            ->paginate(2);
+
+        return view('admin.pages.categories.index', compact('categories', 'filters'));
+    }
 }
