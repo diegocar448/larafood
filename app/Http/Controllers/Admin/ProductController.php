@@ -24,7 +24,9 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = $this->repository->latest()->paginate(2);
+        $products = $this->repository->latest()->paginate(10);
+
+
 
         return view("admin.pages.products.index", compact('products'));
     }
@@ -53,14 +55,20 @@ class ProductController extends Controller
         $tenant = auth()->user()->tenant;
 
 
-        /////////////////////////////////////////////////////////////////////////
-        //Verifica se a imagem é valida caso seja, armazenará dentro de storage//
-        /////////////////////////////////////////////////////////////////////////
+        ///////////////////////////////////////////////////////////////////////////////////////////////
+        //Verifica se a imagem é valida caso seja, armazenará dentro de storage/tenant/uuid?/products//
+        ///////////////////////////////////////////////////////////////////////////////////////////////
         if ($request->hasFile('image') && $request->image->isValid()) {
-            $data['image'] = $request->image->store("tenant/{$tenant->uuid}/products");
+            //$request->image->getClientOriginalName();
+            $data['image'] = $request->image->store("public/tenants/{$tenant->uuid}/products");
+
+            $urlGerada = explode("/", $data['image']);
+            $data['image'] = "storage/tenants/" . $urlGerada[2] . "/products/" . $urlGerada[4];
         }
 
-        $this->repository->create($request->all());
+
+        //dd($data);
+        $this->repository->create($data);
 
         return redirect()->route('products.index');
     }
@@ -116,12 +124,16 @@ class ProductController extends Controller
 
         /////////////////////////////////////////////////////////////////////////
         //Verifica se a imagem é valida caso seja, armazenará dentro de storage//
-        /////////////////////////////////////////////////////////////////////////
+        /////////////////////////////////////////////////////////////////////////        
         if ($request->hasFile('image') && $request->image->isValid()) {
-            $data['image'] = $request->image->store("tenant/{$tenant->uuid}/products");
+            //$request->image->getClientOriginalName();
+            $data['image'] = $request->image->store("public/tenants/{$tenant->uuid}/products");
+
+            $urlGerada = explode("/", $data['image']);
+            $data['image'] = "storage/tenants/" . $urlGerada[2] . "/products/" . $urlGerada[4];
         }
 
-        $product->update($request->all());
+        $product->update($data);
 
         return redirect()->route('products.index');
     }
