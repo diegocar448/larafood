@@ -6,6 +6,7 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreUpdateProduct;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -63,7 +64,7 @@ class ProductController extends Controller
             $data['image'] = $request->image->store("public/tenants/{$tenant->uuid}/products");
 
             $urlGerada = explode("/", $data['image']);
-            $data['image'] = "storage/tenants/" . $urlGerada[2] . "/products/" . $urlGerada[4];
+            $data['image'] = "tenants/" . $urlGerada[2] . "/products/" . $urlGerada[4];
         }
 
 
@@ -126,11 +127,13 @@ class ProductController extends Controller
         //Verifica se a imagem é valida caso seja, armazenará dentro de storage//
         /////////////////////////////////////////////////////////////////////////        
         if ($request->hasFile('image') && $request->image->isValid()) {
-            //$request->image->getClientOriginalName();
+            if (storage_path("app/public/" . $product->image)) {
+                unlink("storage/" . $product->image);
+            }
             $data['image'] = $request->image->store("public/tenants/{$tenant->uuid}/products");
 
             $urlGerada = explode("/", $data['image']);
-            $data['image'] = "storage/tenants/" . $urlGerada[2] . "/products/" . $urlGerada[4];
+            $data['image'] = "tenants/" . $urlGerada[2] . "/products/" . $urlGerada[4];
         }
 
         $product->update($data);
@@ -148,6 +151,10 @@ class ProductController extends Controller
     {
         if (!$product = $this->repository->find($id)) {
             return redirect()->back();
+        }
+
+        if (storage_path("app/public/" . $product->image)) {
+            unlink("storage/" . $product->image);
         }
 
         $product->delete();

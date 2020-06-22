@@ -46,7 +46,7 @@
                     <tr>
                         <td>
                             {{-- <img src="{{ url("storage/{$product->image}") }}" alt="">  --}}
-                            <img src="{{ url("$product->image") }}" alt="" style="max-width: 90px;"> 
+                            <img src="{{ url("storage/{$product->image}") }}" alt="" style="max-width: 90px;"> 
                             
                         </td>
                         <td>{{$product->title}}</td>                        
