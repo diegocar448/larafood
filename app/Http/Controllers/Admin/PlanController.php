@@ -22,7 +22,7 @@ class PlanController extends Controller
     {
         $request->flash();
 
-        $plans = $this->repository->latest()->paginate(2);
+        $plans = $this->repository->latest()->paginate(25);
 
         return view("admin.pages.plans.index", compact("plans"));
     }

@@ -236,43 +236,43 @@ return [
             'text' => 'Planos',
             'url'  => 'admin/plans/',
             'icon' => 'fas fa-list',
-            //'can'  => 'manage-blog',	
+            'can'  => 'plans',
         ],
         [
             'text' => 'Perfis',
             'url'  => 'admin/profiles/',
             'icon' => 'fas fa-address-book',
-            //'can'  => 'manage-blog',admin.pages.plans.profiles.index	
+            'can'  => 'profiles',
         ],
         [
             'text' => 'Permissões',
             'url'  => 'admin/permissions/',
             'icon' => 'fas fa-lock',
-            //'can'  => 'manage-blog',admin.pages.plans.profiles.index
+            'can'  => 'permissions',
         ],
         [
             'text' => 'Usuários',
             'url'  => 'admin/users/',
             'icon' => 'fas fa-users',
-            //'can'  => 'manage-blog',admin.pages.plans.profiles.index
+            'can'  => 'users',
         ],
         [
             'text' => 'Categorias',
             'url'  => 'admin/categories/',
             'icon' => 'fas fa-layer-group',
-            //'can'  => 'manage-blog',admin.pages.plans.profiles.index
+            'can'  => 'categories',
         ],
         [
             'text' => 'Produtos',
             'url'  => 'admin/products/',
             'icon' => 'fas fa-hamburger',
-            //'can'  => 'manage-blog',admin.pages.plans.profiles.index
+            'can'  => 'products',
         ],
         [
             'text' => 'Mesas',
             'url'  => 'admin/tables/',
             'icon' => 'fas fa-tablet',
-            //'can'  => 'manage-blog',admin.pages.plans.profiles.index
+            'can'  => 'tables',
         ]
     ],
 

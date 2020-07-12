@@ -20,7 +20,7 @@ Route::prefix('admin')
 
 
         Route::get('test-acl', function () {
-            dd(auth()->user()->isTenant());
+            dd(auth()->user()->permissions());
         });
 
         ////////////////////////////////////////////////////////////////////////
