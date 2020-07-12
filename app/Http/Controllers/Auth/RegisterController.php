@@ -52,6 +52,8 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
+
+        //dd($data);
         return Validator::make($data, [
             'name' => ['required', 'string', 'min:3', 'max:255'],
             'email' => ['required', 'string', 'email', 'min:3', 'max:255', 'unique:users'],
@@ -69,6 +71,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+
         if (!$plan = session('plan')) {
             return redirect()->route('site.home');
         }

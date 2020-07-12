@@ -3,9 +3,11 @@
 @section('title', "Categorias")
 
 @section('content_header')
-<a href="{{ route('categories.create') }}" class="btn btn-dark btn-block">
-    Adicionar Categoria <i class="fas fa-plus-square"></i>
-</a>
+    @can("add-cat")
+        <a href="{{ route('categories.create') }}" class="btn btn-dark btn-block">
+            Adicionar Categoria <i class="fas fa-plus-square"></i>
+        </a>
+    @endcan
 <div class="container">
     
 

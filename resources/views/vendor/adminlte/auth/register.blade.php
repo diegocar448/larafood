@@ -16,6 +16,22 @@
 @section('auth_body')
     <form action="{{ route('register') }}" method="post">
         {{ csrf_field() }}
+        {{isset($errors)}}
+        <div class="form-group row">
+
+
+            <div class="col-md-6">
+                @if(isset($errors) && $errors->any())
+                    <div class="alert alert-warning">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{$error}}</li>    
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+            </div>
+        </div>
 
         <p><strong>Plano:</strong> {{ session('plan')->name ?? '' }}</p>        
 

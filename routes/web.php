@@ -19,9 +19,9 @@ Route::prefix('admin')
     ->group(function () {
 
 
-        Route::get('test-acl', function () {
+        /* Route::get('test-acl', function () {
             dd(auth()->user()->permissions());
-        });
+        }); */
 
         ////////////////////////////////////////////////////////////////////////
         ///////////////////////Rotas Mesas//////////////////////////////////////
@@ -162,7 +162,7 @@ Route::get('/', 'Site\SiteController@index')->name("site.home");
 //////////////////////////////////////////////////////////////////////////////
 Auth::routes(['register' => true]);
 
-Auth::routes();
+//Auth::routes();
 
 Route::get('/home', function () {
     return view('home');

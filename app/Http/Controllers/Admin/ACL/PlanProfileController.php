@@ -15,6 +15,7 @@ class PlanProfileController extends Controller
     {
         $this->plan = $plan;
         $this->profile = $profile;
+        $this->middleware(['can:plans']);
     }
 
     public function profiles($idPlan)
@@ -31,6 +32,7 @@ class PlanProfileController extends Controller
 
     public function plans($idProfile)
     {
+
 
 
 
@@ -82,11 +84,12 @@ class PlanProfileController extends Controller
 
         $plan->profiles()->attach($request->profiles);
 
-        return redirect()->route("plans.profiles", $plan->id);
+        return redirect()->route("plans.profiles.attach", $plan->id);
     }
 
     public function detachProfilePlan(Request $request, $idPlan, $idProfile)
     {
+
         $plan = $this->plan->find($idPlan);
         $profile = $this->profile->find($idProfile);
 
@@ -98,6 +101,6 @@ class PlanProfileController extends Controller
 
         $plan->profiles()->detach($profile);
 
-        return redirect()->route("plans.profiles", $plan->id);
+        return redirect()->route("plans.profiles.detach", $plan->id);
     }
 }

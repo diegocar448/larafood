@@ -6,7 +6,7 @@
 
 <div class="container">
     
-asdas
+
     <h1>
         Permissões do perfil <b> {{ $profile->name }} </b>
         <a href="{{ route('profiles.permissions.available', $profile->id) }}" class="btn btn-dark">Adicionar Nova Permissão</a>
