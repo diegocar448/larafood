@@ -86,7 +86,17 @@ Route::prefix('admin')
         Route::any('plans/{id}/profiles/create', "ACL\PlanProfileController@profilesAvailable")->name('plans.profiles.available');
         Route::get('plans/{id}/profiles', "ACL\PlanProfileController@profiles")->name('plans.profiles');
         Route::get('profiles/{id}/plans', "ACL\PlanProfileController@plans")->name('profiles.plans');
-        //Route::any('profile/{id}/plans/create/search', "ACL\PlanProfileController@filterplansAvailable")->name('plans.plans.available.search');
+
+
+        ////////////////////////////////////////////////////////////////////////
+        ///////////////////////Plan x Roles/////////////////////////////
+        ////////////////////////////////////////////////////////////////////////
+        Route::get('plans/{id}/role/{idProfile}/detach', "ACL\PlanProfileController@detachProfilePlan")->name('plans.role.detach');
+        Route::post('plans/{id}/roles/store', "ACL\PlanProfileController@attachProfilesPlan")->name('plans.roles.attach');
+        Route::any('plans/{id}/roles/create', "ACL\PlanProfileController@rolesAvailable")->name('plans.roles.available');
+        Route::get('plans/{id}/roles', "ACL\PlanProfileController@roles")->name('plans.roles');
+        Route::get('roles/{id}/plans', "ACL\PlanProfileController@plans")->name('roles.plans');
+
 
 
         ////////////////////////////////////////////////////////////////////////
@@ -113,6 +123,12 @@ Route::prefix('admin')
         ////////////////////////////////////////////////////////////////////////
         Route::any('profiles/search', 'ACL\ProfileController@search')->name("profiles.search");
         Route::resource('profiles', 'ACL\ProfileController');
+
+        ////////////////////////////////////////////////////////////////////////
+        ///////////////////////Routes Roles//////////////////////////////////
+        ////////////////////////////////////////////////////////////////////////
+        Route::any('roles/search', 'ACL\RoleController@search')->name("roles.search");
+        Route::resource('roles', 'ACL\RoleController');
 
 
 
