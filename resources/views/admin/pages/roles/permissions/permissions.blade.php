@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', "Permissões do perfil ")
+@section('title', "Permissões do Cargo ")
 
 @section('content_header')
 
@@ -8,13 +8,13 @@
     
 
     <h1>
-        Permissões do perfil <b> {{ $profile->name }} </b>
-        <a href="{{ route('profiles.permissions.available', $profile->id) }}" class="btn btn-dark">Adicionar Nova Permissão</a>
+        Permissões do Cargo <b> {{ $role->name }} </b>
+        <a href="{{ route('roles.permissions.available', $role->id) }}" class="btn btn-dark">Adicionar Nova Permissão</a>
     </h1> 
 
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{{ route('admin.index') }}" >Dashboard</a></li>
-        <li class="breadcrumb-item active"><a href="{{ route('profiles.index') }}">Perfis</a></li>
+        <li class="breadcrumb-item active"><a href="{{ route('roles.index') }}">Cargo</a></li>
     </ol>
 </div>
 
@@ -27,7 +27,7 @@
     <div class="card">
 
         <div class="card-header">
-            <form action="{{ route('profiles.search') }}" method="POST" class="form form-inline">
+            <form action="{{ route('roles.search') }}" method="POST" class="form form-inline">
                 @csrf                
                 <input type="text" name="filter" placeholder="Busca" class="form-control" value="{{ $filters["filter"] ?? ''}}">
                 <button type="submit" class="btn btn-dark">Buscar</button>                
@@ -56,7 +56,7 @@
                     <tr>
                         <td>{{$permission->name}}</td>                    
                         <td style="width:150px;">
-                            <a href="{{ route('profiles.permission.detach', [$profile->id, $permission->id ]) }}" class="btn btn-danger">Desvincular</a>                           
+                            <a href="{{ route('roles.permission.detach', [$role->id, $permission->id ]) }}" class="btn btn-danger">Desvincular</a>                           
                         </td>
                     </tr>
                     @endforeach 

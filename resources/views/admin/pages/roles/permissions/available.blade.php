@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', "Permissões do perfil ")
+@section('title', "Permissões do Cargo ")
 
 @section('content_header')
 
@@ -8,17 +8,17 @@
     
 
     {{-- <h1>
-        Permissões do perfil <b> {{ $profile->name }} </b>
-        <a href="{{ route('profiles.permissions.available', $profile->id) }}" class="btn btn-dark">Adicionar Nova Permissão</a>
+        Permissões do perfil <b> {{ $role->name }} </b>
+        <a href="{{ route('roles.permissions.available', $role->id) }}" class="btn btn-dark">Adicionar Nova Permissão</a>
     </h1>  --}}
 
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{{ route('admin.index') }}" >Dashboard</a></li>
-        <li class="breadcrumb-item active"><a href="{{ route('profiles.index') }}">Perfis</a></li>
+        <li class="breadcrumb-item active"><a href="{{ route('roles.index') }}">Cargo</a></li>
     </ol>
 
     <br>
-    <h1>Permissões disponíveis perfil <strong>{{ $profile->name }}</strong></h1>
+    <h1>Permissões disponíveis perfil <strong>{{ $role->name }}</strong></h1>
 
 </div>
 @stop
@@ -29,7 +29,7 @@
     <div class="card">
 
         <div class="card-header">
-            <form action="{{ route('profiles.permissions.available', $profile->id) }}" method="POST" class="form form-inline">
+            <form action="{{ route('roles.permissions.available', $role->id) }}" method="POST" class="form form-inline">
                 @csrf                
                 <input type="text" name="filter" placeholder="Busca" class="form-control" value="{{ $filters["filter"] ?? ''}}">
                 <button type="submit" class="btn btn-dark">Buscar</button>                
@@ -55,7 +55,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <form action="{{ route('profiles.permissions.attach', $profile->id) }}" method="POST">
+                    <form action="{{ route('roles.permissions.attach', $role->id) }}" method="POST">
                         @csrf
                         @foreach($permissions as $permission)
                         <tr>

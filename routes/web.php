@@ -23,6 +23,26 @@ Route::prefix('admin')
             dd(auth()->user()->permissions());
         }); */
 
+
+        ////////////////////////////////////////////////////////////////////////
+        ///////////////////////Permission x Roles/////////////////////////////
+        ////////////////////////////////////////////////////////////////////////
+        Route::get('roles/{id}/permission/{idPermission}/detach', "ACL\PermissionRoleController@detachPermissionsRole")->name('roles.permission.detach');
+        Route::post('roles/{id}/permissions/store', "ACL\PermissionRoleController@attachPermissionsRole")->name('roles.permissions.attach');
+        //Route::any('profile/{id}/permissions/create/search', "ACL\PermissionRoleController@filterPermissionsAvailable")->name('roles.permissions.available.search');
+        Route::any('roles/{id}/permissions/create', "ACL\PermissionRoleController@permissionsAvailable")->name('roles.permissions.available');
+        Route::get('roles/{id}/permissions', "ACL\PermissionRoleController@permissions")->name('roles.permissions');
+        Route::get('permissions/{id}/role', "ACL\PermissionRoleController@roles")->name('permissions.roles');
+
+
+
+
+
+
+
+
+
+
         ////////////////////////////////////////////////////////////////////////
         ///////////////////////Rotas Tenants//////////////////////////////////
         ////////////////////////////////////////////////////////////////////////

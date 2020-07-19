@@ -58,9 +58,9 @@
                         <td style="width:150px;">
                             <a href="{{ route('roles.edit', $role->id) }}" class="btn btn-info">Editar</a>
                             <a href="{{ route('roles.show', $role->id) }}" class="btn btn-warning">Ver</a>
-                            {{-- <a href="{{ route('roles.permissions', $role->id) }}" class="btn btn-info">
+                            <a href="{{ route('roles.permissions', $role->id) }}" class="btn btn-info">
                                 <i class="fas fa-lock"></i>
-                            </a> --}}
+                            </a>
                             {{-- <a href="{{ route('roles.plans', $role->id) }}" class="btn btn-info">
                                 <i class="fas fa-list-alt"></i>
                             </a> --}}
