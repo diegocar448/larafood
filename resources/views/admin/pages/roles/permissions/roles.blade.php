@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', "Permissões do Cargo ")
+@section('title', "Permissões do Usuario ")
 
 @section('content_header')
 
@@ -8,13 +8,13 @@
     
 
     <h1>
-        Permissões do Cargo <b> {{ $role->name }} </b>
-        <a href="{{ route('roles.permissions.available', $role->id) }}" class="btn btn-dark">Adicionar Nova Permissão</a>
+        Cargo do Usuário <b> {{ $role->name }} </b>
+        <a href="{{ route('users.roles.available', $role->id) }}" class="btn btn-dark">Adicionar Nova Permissão</a>
     </h1> 
 
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{{ route('admin.index') }}" >Dashboard</a></li>
-        <li class="breadcrumb-item active"><a href="{{ route('roles.index') }}">Cargo</a></li>
+        <li class="breadcrumb-item active"><a href="{{ route('users.index') }}">Usuário</a></li>
     </ol>
 </div>
 
@@ -27,7 +27,7 @@
     <div class="card">
 
         <div class="card-header">
-            <form action="{{ route('roles.search') }}" method="POST" class="form form-inline">
+            <form action="{{ route('users.search') }}" method="POST" class="form form-inline">
                 @csrf                
                 <input type="text" name="filter" placeholder="Busca" class="form-control" value="{{ $filters["filter"] ?? ''}}">
                 <button type="submit" class="btn btn-dark">Buscar</button>                
@@ -52,11 +52,11 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($permissions as $permission)
+                    @foreach($roles as $role)
                     <tr>
-                        <td>{{$permission->name}}</td>                    
+                        <td>{{$role->name}}</td>                    
                         <td style="width:150px;">
-                            <a href="{{ route('roles.permission.detach', [$role->id, $permission->id ]) }}" class="btn btn-danger">Desvincular</a>                           
+                            <a href="{{ route('roles.user.detach', [$user->id, $role->id ]) }}" class="btn btn-danger">Desvincular</a>                           
                         </td>
                     </tr>
                     @endforeach 
@@ -66,9 +66,9 @@
 
         <div class="card-footer">
             @if(isset($filters))
-                {!! $permissions->appends($filters)->links() !!}
+                {!! $roles->appends($filters)->links() !!}
             @else
-                {!! $permissions->links() !!}
+                {!! $roles->links() !!}
             @endif
             
 

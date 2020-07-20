@@ -2,12 +2,14 @@
 
 namespace App\Models;
 
+use App\Models\Role;
 use App\Models\Tenant;
+use App\Models\Permission;
 use App\Models\Traits\UserACLTrait;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Database\Eloquent\Builder;
 
 
 class User extends Authenticatable
@@ -72,5 +74,39 @@ class User extends Authenticatable
     public function tenant()
     {
         return $this->belongsTo(Tenant::class);
+    }
+
+    /////////////////////////////////////////////////////////////////////////
+    ///////////////////////Relacionamento com Role //////////////////////////
+    /////////////////////////////////////////////////////////////////////////
+    public function roles()
+    {
+        return $this->belongsToMany(Role::class);
+    }
+
+
+    ///////////////////////////////////////////////////////////////////////////////
+    /////Filtro para pegar somente as Roles ainda não selecionadas para o User ////
+    ///////////////////////////////////////////////////////////////////////////////
+    public function roleAvailable($filter = null)
+    {
+
+
+        $roles = Role::whereNotIn("roles.id", function ($query) {
+            $query->select("role_user.role_id");
+            $query->from("role_user");
+            $query->whereRaw("role_user.user_id={$this->id}");
+        })
+            ->where(function ($queryFilter) use ($filter) {
+                if ($filter)
+                    $queryFilter->where("roles.name", "LIKE", "%{$filter}%");
+            })
+            //->where("role_profile_profile_id", "LIKE", $this->id)
+            ->paginate(2);
+
+
+
+
+        return $roles;
     }
 }
