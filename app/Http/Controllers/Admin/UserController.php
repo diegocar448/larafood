@@ -51,6 +51,7 @@ class UserController extends Controller
      */
     public function store(StoreUpdateUser $request)
     {
+
         $data = $request->all();
         $data['tenant_id'] = auth()->user()->tenant_id;
         $data['password'] = bcrypt($data['password']);

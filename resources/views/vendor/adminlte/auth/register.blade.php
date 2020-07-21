@@ -16,7 +16,7 @@
 @section('auth_body')
     <form action="{{ route('register') }}" method="post">
         {{ csrf_field() }}
-        {{isset($errors)}}
+        
         <div class="form-group row">
 
 

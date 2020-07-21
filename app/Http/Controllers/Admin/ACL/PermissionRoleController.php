@@ -22,13 +22,12 @@ class PermissionRoleController extends Controller
     {
         $role = $this->role->find($idRole);
 
-
-
         if (!$role)
             return redirect()->back();
 
         $permissions = $role->permissions()->paginate(2);
 
+        //dd([$permissions, $roles]);
 
         return view("admin.pages.roles.permissions.permissions", compact("role", "permissions"));
     }
@@ -47,7 +46,7 @@ class PermissionRoleController extends Controller
 
 
 
-        return view("admin.pages.permissions.roles.roles", compact("Roles", "permission"));
+        return view("admin.pages.permissions.roles.roles", compact("roles", "permission"));
     }
 
     public function permissionsAvailable(Request $request, $idRole)

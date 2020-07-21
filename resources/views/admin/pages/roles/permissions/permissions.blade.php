@@ -9,7 +9,7 @@
 
     <h1>
         Cargo do Usuário <b> {{ $role->name }} </b>
-        <a href="{{ route('users.roles.available', $role->id) }}" class="btn btn-dark">Adicionar Nova Permissão</a>
+        <a href="{{ route('roles.permissions.available', $role->id) }}" class="btn btn-dark">Adicionar Nova Permissão</a>
     </h1> 
 
     <ol class="breadcrumb">
@@ -27,11 +27,11 @@
     <div class="card">
 
         <div class="card-header">
-            <form action="{{ route('users.search') }}" method="POST" class="form form-inline">
+            {{-- <form action="{{ route('users.search') }}" method="POST" class="form form-inline">
                 @csrf                
                 <input type="text" name="filter" placeholder="Busca" class="form-control" value="{{ $filters["filter"] ?? ''}}">
                 <button type="submit" class="btn btn-dark">Buscar</button>                
-            </form>
+            </form> --}}
             @if (session('sucesso'))
                     <div class="alert alert-success">
                         {{ session('sucesso') }}
@@ -52,11 +52,11 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($roles as $role)
+                    @foreach($permissions as $permission)
                     <tr>
-                        <td>{{$role->name}}</td>                    
+                        <td>{{$permission->name}}</td>                    
                         <td style="width:150px;">
-                            <a href="{{ route('roles.user.detach', [$user->id, $role->id ]) }}" class="btn btn-danger">Desvincular</a>                           
+                            <a href="{{ route('roles.permission.detach', [$role->id, $permission->id ]) }}" class="btn btn-danger">Desvincular</a>                           
                         </td>
                     </tr>
                     @endforeach 
@@ -66,9 +66,9 @@
 
         <div class="card-footer">
             @if(isset($filters))
-                {!! $roles->appends($filters)->links() !!}
+                {!! $permissions->appends($filters)->links() !!}
             @else
-                {!! $roles->links() !!}
+                {!! $permissions->links() !!}
             @endif
             
 
