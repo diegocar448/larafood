@@ -11,6 +11,7 @@
 
 Aplicação para delivery
 
+Usando os conceitos de ACL, Tenants, Scopes Globais/Locais, Events, Listeners.
 
 
 Laravel is accessible, powerful, and provides tools required for large, robust applications.
