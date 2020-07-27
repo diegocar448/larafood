@@ -30,4 +30,11 @@ class CategoryRepository implements CategoryRepositoryInterface
             ->where("categories.tenant_id", $idTenant)
             ->get();
     }
+
+    public function getCategoryByUrl(string $url)
+    {
+        return DB::table($this->table)
+            ->where("categories.url", $url)
+            ->first();
+    }
 }
