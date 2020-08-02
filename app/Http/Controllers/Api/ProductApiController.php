@@ -20,7 +20,10 @@ class ProductApiController extends Controller
     public function productsByTenant(TenantFormRequest $request)
     {
 
-        $products = $this->productService->getProductsByTenantUuid($request->uuid);
+        $products = $this->productService->getProductsByTenantUuid(
+            $request->uuid,
+            $request->get('categories', [])
+        );
 
 
 
