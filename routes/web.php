@@ -12,6 +12,15 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+use App\Models\Client;
+
+Route::get("/teste", function () {
+    $client = Client::first();
+
+    $token = $client->createToken('token-teste');
+
+    dd($token->plainTextToken);
+});
 
 Route::prefix('admin')
     ->namespace('Admin')
