@@ -9,11 +9,11 @@ use Illuminate\Support\Str;
 
 class ProductService
 {
-    private $productService, $tenantRepository;
+    private $productRepository, $tenantRepository;
 
-    public function __construct(TenantRepositoryInterface $tenantRepository, ProductRepositoryInterface $productService)
+    public function __construct(TenantRepositoryInterface $tenantRepository, ProductRepositoryInterface $productRepository)
     {
-        $this->productService = $productService;
+        $this->productRepository = $productRepository;
         $this->tenantRepository = $tenantRepository;
     }
 
@@ -24,12 +24,12 @@ class ProductService
         $tenant = $this->tenantRepository->getTenantByUuid($uuid);
 
 
-        return $this->productService->getProductsByTenantId($tenant->id, $categories);
+        return $this->productRepository->getProductsByTenantId($tenant->id, $categories);
     }
 
-    /* public function getTableByIdentify(string $identify)
+    public function getProductByFlag(string $flag)
     {
 
-        return $this->table->getTableByIdentify($identify);
-    } */
+        return $this->productRepository->getProductByFlag($flag);
+    }
 }
