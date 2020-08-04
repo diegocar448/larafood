@@ -2,6 +2,16 @@
 
 
 
+
+
+Route::group([
+    'middleware' => ['auth:sanctum']
+], function () {
+    Route::post("/sanctum/token", "Api\Auth\AuthClientController@auth");
+    Route::get("/me", "Api\Auth\AuthClientController@me");
+});
+
+
 Route::group([
     "prefix" => "v1",
     "namespace" => "Api"
@@ -18,7 +28,6 @@ Route::group([
 
     Route::get("/products/{flag}", "ProductApiController@show");
     Route::get("/products", "ProductApiController@productsByTenant");
-
 
     //////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////Cadastrar novo Cliente(Client)///////////////////////////

@@ -17,6 +17,7 @@ class ClientService
 
     public function createNewClient(array $data)
     {
+
         return $this->clientRepository->createNewClient($data);
     }
 }
