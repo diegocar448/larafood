@@ -9,6 +9,7 @@ Route::group([
 ], function () {
     Route::post("/sanctum/token", "Api\Auth\AuthClientController@auth");
     Route::get("/me", "Api\Auth\AuthClientController@me");
+    Route::get("/logout", "Api\Auth\AuthClientController@logout");
 });
 
 
