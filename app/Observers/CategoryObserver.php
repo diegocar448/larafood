@@ -19,6 +19,7 @@ class CategoryObserver
 
 
         $category->url = Str::kebab($category->name);
+        $category->uuid = Str::uuid();
     }
 
     /**

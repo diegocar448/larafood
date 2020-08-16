@@ -6,13 +6,17 @@ use App\Models\{
     Category,
     Plan,
     Tenant,
-    Product
+    Product,
+    Client,
+    Table
 };
 use App\Observers\{
     PlanObserver,
     TenantObserver,
     CategoryObserver,
-    ProductObserver
+    ProductObserver,
+    TableObserver,
+    ClientObserver
 };
 
 use App\Services\TenantService;
@@ -40,5 +44,7 @@ class AppServiceProvider extends ServiceProvider
         Tenant::observe(TenantObserver::class);
         Category::observe(CategoryObserver::class);
         Product::observe(ProductObserver::class);
+        Table::observe(TableObserver::class);
+        Client::observe(ClientObserver::class);
     }
 }
