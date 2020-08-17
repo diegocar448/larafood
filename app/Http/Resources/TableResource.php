@@ -17,7 +17,8 @@ class TableResource extends JsonResource
         /* return parent::toArray($request); */
 
         return [
-            'identify' => $this->identify,
+            'identify' => $this->uuid,
+            'name' => $this->identify,
             'description' => $this->description,
 
         ];
