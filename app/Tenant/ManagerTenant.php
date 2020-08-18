@@ -9,10 +9,10 @@ class ManagerTenant
     //////////////////////////////////////////////////////////////////
     ////////////o retorno do identificador do Tenant//////////////////
     //////////////////////////////////////////////////////////////////
-    public function getTenantIdentify(): int
+    public function getTenantIdentify()
     {
 
-        return auth()->user()->tenant_id;
+        return auth()->check() ? auth()->user()->tenant_id : '';
     }
 
 
@@ -20,9 +20,9 @@ class ManagerTenant
     //o retorno será um objeto da model Tenant( getTenant(): Tenant )/
     /////////////////pegar os dados do tenant em si///////////////////
     //////////////////////////////////////////////////////////////////
-    public function getTenant(): Tenant
+    public function getTenant()
     {
-        return auth()->user()->tenant;
+        return auth()->check() ? auth()->user()->tenant : '';
     }
 
 
