@@ -13,7 +13,7 @@ class StoreOrder extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,18 @@ class StoreOrder extends FormRequest
     public function rules()
     {
         return [
-            //
+            'uuid' => [
+                'required',
+                'exists:tenants,uuid',
+            ],
+            'table' => [
+                'nullable',
+                'exists:table,uuid',
+            ],
+            'comment' => [
+                'nullable',
+                'max:1000',
+            ]
         ];
     }
 }
