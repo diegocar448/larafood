@@ -53,4 +53,7 @@ Route::group([
 
     Route::get("/products/{flag}", "ProductApiController@show");
     Route::get("/products", "ProductApiController@productsByTenant");
+
+    Route::post("/orders", "OrderApiController@store");
+    Route::get("/orders/{identify}", "OrderApiController@show");
 });
