@@ -23,6 +23,8 @@ class StoreOrder extends FormRequest
      */
     public function rules()
     {
+
+
         return [
             'uuid' => [
                 'required',

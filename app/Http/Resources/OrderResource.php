@@ -18,6 +18,6 @@ class OrderResource extends JsonResource
 
         return [
             'identify' => $this->identify,
-        ]
+        ];
     }
 }

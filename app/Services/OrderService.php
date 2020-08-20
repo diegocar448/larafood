@@ -22,23 +22,26 @@ class OrderService
 
     public function createNewOrder(array $order)
     {
+
         $identify = $this->getIdentifyOrder();
         $total = $this->getTotalOrder([]);
         $status = 'open';
-        $tenant = $this->getTenantIdByOrder($order['uuid']);
+        $tenantId = $this->getTenantIdByOrder($order['uuid'] ?? '');
+        $comment = isset($order['comment']) ? $order['comment'] : '';
         $clientId = $this->getClientIdByOrder();
-        $tableId = $this->getTableIdByOrder($order['table']);
+        $tableId = $this->getTableIdByOrder($order['table'] ?? '');
 
         $order = $this->orderRepository->createNewOrder(
             $identify,
             $total,
             $status,
-            $tenant,
+            $tenantId,
+            $comment,
             $clientId,
             $tableId
         );
 
-
+        return $order;
 
         /* string $identify,
         float $total,
@@ -48,7 +51,7 @@ class OrderService
         $tableId = '' */
     }
 
-    private function getIdentifyOrder(int $qtyCaracteres = 8)
+    private function getIdentifyOrder(float $qtyCaraceters = 8)
     {
         $smallLetters = str_shuffle('abcdefghijklmnopqrstuvwyz');
 
@@ -60,7 +63,7 @@ class OrderService
         //$characters = $smallLetters.$numbers.$specialCharacters;
         $characters = $smallLetters . $numbers;
 
-        $identify = substr(str_shuffle($characters), 0, $qtyCaracteres);
+        return $identify = substr(str_shuffle($characters), 0, $qtyCaraceters);
     }
 
     private function getTotalOrder(array $products): float
@@ -77,6 +80,7 @@ class OrderService
 
     private function getTableIdByOrder(string $uuid = '')
     {
+
         if ($uuid) {
             $table = $this->tableRepository->getTableByUuid($uuid);
 

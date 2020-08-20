@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Table;
 use App\Models\Client;
 use App\Models\Tenant;
 use App\Models\Product;
@@ -16,6 +17,7 @@ class Order extends Model
         'identify',
         'client_id',
         'table_id',
+        'tenant_id',
         'total',
         'status',
         'comment'

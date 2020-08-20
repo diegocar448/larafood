@@ -34,6 +34,10 @@ Route::group([
     /////////////////////////////Cadastrar novo Cliente(Client)///////////////////////////
     //////////////////////////////////////////////////////////////////////////////////////
     Route::post("/client", "Auth\RegisterController@store");
+
+    Route::post("/orders", "OrderApiController@store");
+
+    Route::get("/orders/{identify}", "OrderApiController@show");
 });
 
 
@@ -53,7 +57,4 @@ Route::group([
 
     Route::get("/products/{flag}", "ProductApiController@show");
     Route::get("/products", "ProductApiController@productsByTenant");
-
-    Route::post("/orders", "OrderApiController@store");
-    Route::get("/orders/{identify}", "OrderApiController@show");
 });
