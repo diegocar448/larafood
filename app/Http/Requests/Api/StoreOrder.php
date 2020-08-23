@@ -25,6 +25,7 @@ class StoreOrder extends FormRequest
     {
 
 
+
         return [
             'uuid' => [
                 'required',
@@ -37,7 +38,13 @@ class StoreOrder extends FormRequest
             'comment' => [
                 'nullable',
                 'max:1000',
-            ]
+            ],
+            'products' => [
+                'required'
+            ],
+            'products.*.identify' => ["required", "exists:products,uuid"],
+            'products.*.qty' => ["required", "integer"]
+
         ];
     }
 }
