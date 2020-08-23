@@ -63,7 +63,18 @@ class OrderService
         //$characters = $smallLetters.$numbers.$specialCharacters;
         $characters = $smallLetters . $numbers;
 
-        return $identify = substr(str_shuffle($characters), 0, $qtyCaraceters);
+
+        $identify = substr(str_shuffle($characters), 0, $qtyCaraceters);
+
+
+        /////////////////////////////////////////////////////////////////////////////////////////////////
+        //Verificar se existe outro pedido com essa identificação, se houver faz roda novamente o metodo
+        /////////////////////////////////////////////////////////////////////////////////////////////////
+        if ($this->orderRepository->getOrderByIdentify($identify)) {
+            $this->getIdentifyOrder($qtyCaraceters + 1);
+        }
+
+        return $identify;
     }
 
     private function getTotalOrder(array $products): float
