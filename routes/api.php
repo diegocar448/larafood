@@ -2,14 +2,17 @@
 
 
 
-
+Route::post("/sanctum/token", "Api\Auth\AuthClientController@auth");
 
 Route::group([
     'middleware' => ['auth:sanctum']
 ], function () {
-    Route::post("/sanctum/token", "Api\Auth\AuthClientController@auth");
+
+
     Route::get("/me", "Api\Auth\AuthClientController@me");
     Route::get("/logout", "Api\Auth\AuthClientController@logout");
+
+    Route::post("/auth/v1/orders", "Api\OrderApiController@store");
 });
 
 

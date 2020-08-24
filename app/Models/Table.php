@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Table extends Model
 {
+    //protected $table = "table";
+
     use TenantTrait;
 
     protected $fillable = [
