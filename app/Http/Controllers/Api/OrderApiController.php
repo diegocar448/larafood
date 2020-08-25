@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Services\OrderService;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\StoreOrder;
+use App\Http\Requests\Api\TenantFormRequest;
 use App\Http\Resources\OrderResource;
 
 class OrderApiController extends Controller
@@ -23,6 +24,18 @@ class OrderApiController extends Controller
 
 
         $order = $this->orderService->createNewOrder($request->all());
+
+        return new OrderResource($order);
+    }
+
+    public function show(TenantFormRequest $request, $identify)
+    {
+
+
+
+        if (!$order = $this->orderService->getOrderByIdentify($identify)) {
+            return response()->json(['message' => 'Not Found'], 404);
+        }
 
         return new OrderResource($order);
     }

@@ -23,6 +23,11 @@ class OrderService
         $this->productRepository = $productRepository;
     }
 
+    public function getOrderByIdentify(string $identify)
+    {
+        return $this->orderRepository->getOrderByIdentify($identify);
+    }
+
     public function createNewOrder(array $order)
     {
         //verificase o produto existe caso não exista ele passa um array vazio
