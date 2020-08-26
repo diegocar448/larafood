@@ -6,6 +6,7 @@ use App\Models\Table;
 use App\Models\Client;
 use App\Models\Tenant;
 use App\Models\Product;
+use App\Models\Evaluation;
 use App\Tenant\Traits\TenantTrait;
 use Illuminate\Database\Eloquent\Model;
 
@@ -38,5 +39,9 @@ class Order extends Model
     public function products()
     {
         return $this->belongsToMany(Product::class);
+    }
+    public function evaluations()
+    {
+        return $this->hasMany(Evaluation::class);
     }
 }
