@@ -12,38 +12,34 @@ class OrderRepository implements OrderRepositoryInterface
 
     public function __construct(Order $order)
     {
-
         $this->entity = $order;
     }
 
     public function createNewOrder(
-        $identify,
+        string $identify,
         float $total,
         string $status,
         int $tenantId,
         string $comment = '',
         $clientId = '',
         $tableId = ''
-
     ) {
-
         $data = [
+            'tenant_id' => $tenantId,
             'identify' => $identify,
             'total' => $total,
             'status' => $status,
-            'tenant_id' => $tenantId,
-            'comment' => $comment
-
+            'comment' => $comment,
         ];
 
         if ($clientId) $data['client_id'] = $clientId;
         if ($tableId) $data['table_id'] = $tableId;
 
-
         $order = $this->entity->create($data);
 
         return $order;
     }
+
 
     public function getOrderByIdentify(string $identify)
     {
@@ -54,40 +50,36 @@ class OrderRepository implements OrderRepositoryInterface
 
     public function registerProductsOrder(int $orderId, array $products)
     {
-
         $order = $this->entity->find($orderId);
 
         $orderProducts = [];
 
-        foreach ($products as $key => $product) {
-            $orderProducts[$product['id']] =
-                [
-                    'qty' => $product['qty'],
-                    'price' => $product['price'],
-                ];
+        foreach ($products as $product) {
+            $orderProducts[$product['id']] = [
+                'qty' => $product['qty'],
+                'price' => $product['price'],
+            ];
         }
 
         $order->products()->attach($orderProducts);
 
+        // foreach ($products as $product) {
+        //     array_push($orderProducts, [
+        //         'order_id' => $orderId,
+        //         'product_id' => $product['id'],
+        //         'qty' => $product['qty'],
+        //         'price' => $product['price'],
+        //     ]);
+        // }
 
-
-        /* foreach ($products as $key => $product) {
-            array_push($orderProducts, [
-                'order_id' => $orderId,
-                'product_id' => $product['id'],
-                'qty' => $product['qty'],
-                'price' => $product['price'],
-            ]);
-        }
-
-        DB::table('order_product')->insert($orderProducts); */
+        // DB::table('order_product')->insert($orderProducts);
     }
 
     public function getOrdersByClientId(int $idClient)
     {
         $orders = $this->entity
             ->where('client_id', $idClient)
-            ->paginate(1);
+            ->paginate();
 
         return $orders;
     }

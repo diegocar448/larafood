@@ -2,31 +2,30 @@
 
 namespace App\Services;
 
-use App\Models\Evaluation;
-use Illuminate\Support\Str;
-use App\Repositories\Contracts\OrderRepositoryInterface;
 use App\Repositories\Contracts\EvaluationRepositoryInterface;
+use App\Repositories\Contracts\OrderRepositoryInterface;
+use Illuminate\Http\Request;
 
 class EvaluationService
 {
-    private $evaluationRepository, $orderRepository;
+    protected $evaluationRepository, $orderRepository;
 
     public function __construct(
-        EvaluationRepositoryInterface $evaluationRepository,
+        EvaluationRepositoryInterface $evaluation,
         OrderRepositoryInterface $orderRepository
     ) {
-
-        $this->evaluationRepository = $evaluationRepository;
+        $this->evaluationRepository = $evaluation;
         $this->orderRepository = $orderRepository;
     }
 
-    public function createNewEvaluation(string $identifyOrder)
+    public function createNewEvaluation(string $identifyOrder, array $evaluation)
     {
 
         $clientId = $this->getIdClient();
+
         $order = $this->orderRepository->getOrderByIdentify($identifyOrder);
 
-        return $this->evaluationRepository->newEvaluationOrder($order->id, $clientId);
+        return $this->evaluationRepository->newEvaluationOrder($order->id, $clientId, $evaluation);
     }
 
     private function getIdClient()
