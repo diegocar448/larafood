@@ -31,6 +31,11 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
+        ////////////////////////////////////////////////////////////////
+        ////Verifica se esta rodando a aplicação via console(true)//////
+        ////////////////////////////////////////////////////////////////
+        if ($this->app->runningInConsole()) return;
+
         $permissions = Permission::all();
 
         //////////////////////////////////////////////////////////////
