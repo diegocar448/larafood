@@ -3,22 +3,22 @@
 namespace App\Providers;
 
 use App\Repositories\Contracts\{
-    TenantRepositoryInterface,
     CategoryRepositoryInterface,
-    TableRepositoryInterface,
-    ProductRepositoryInterface,
     ClientRepositoryInterface,
-    OrderRepositoryInterface,
     EvaluationRepositoryInterface,
+    OrderRepositoryInterface,
+    ProductRepositoryInterface,
+    TableRepositoryInterface,
+    TenantRepositoryInterface
 };
 use App\Repositories\{
-    TenantRepository,
     CategoryRepository,
-    TableRepository,
-    ProductRepository,
     ClientRepository,
-    OrderRepository,
     EvaluationRepository,
+    OrderRepository,
+    ProductRepository,
+    TableRepository,
+    TenantRepository
 };
 
 use Illuminate\Support\ServiceProvider;
@@ -38,31 +38,37 @@ class RepositoryServiceProvider extends ServiceProvider
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         $this->app->bind(
             TenantRepositoryInterface::class,
-            TenantRepository::class,
+            TenantRepository::class
         );
+
         $this->app->bind(
             CategoryRepositoryInterface::class,
-            CategoryRepository::class,
+            CategoryRepository::class
         );
+
         $this->app->bind(
             TableRepositoryInterface::class,
-            TableRepository::class,
+            TableRepository::class
         );
+
         $this->app->bind(
             ProductRepositoryInterface::class,
-            ProductRepository::class,
+            ProductRepository::class
         );
+
         $this->app->bind(
             ClientRepositoryInterface::class,
-            ClientRepository::class,
+            ClientRepository::class
         );
+
         $this->app->bind(
             OrderRepositoryInterface::class,
-            OrderRepository::class,
+            OrderRepository::class
         );
+
         $this->app->bind(
             EvaluationRepositoryInterface::class,
-            EvaluationRepository::class,
+            EvaluationRepository::class
         );
     }
 

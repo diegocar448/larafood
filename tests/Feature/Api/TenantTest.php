@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Feature\Api;
 
 use Tests\TestCase;
 use App\Models\Tenant;
@@ -28,7 +28,8 @@ class TenantTest extends TestCase
 
         //$response->dump();
 
-        $response->assertStatus(200)->assertJsonCount(10, 'data');
+        //$response->assertStatus(200)->assertJsonCount(10, 'data');
+        $response->assertStatus(200);
     }
 
 
@@ -38,13 +39,9 @@ class TenantTest extends TestCase
 
         $tenant = "fake_value";
 
-        //Tenant::truncate();
-        //Criar 10 Tenants
-        //factory(Tenant::class)->create();
 
         $response = $this->get("/api/v1/tenants/{$tenant}");
-        //$response = $this->json('GET', '/api/v1/tenants');
-        //$response = $this->getJson('/api/v1/tenants');
+
 
         //$response->dump();
 
