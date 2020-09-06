@@ -2,10 +2,11 @@
 
 namespace Tests\Feature\Api;
 
-use Tests\TestCase;
 use App\Models\Table;
-use Illuminate\Foundation\Testing\WithFaker;
+use App\Models\Tenant;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\WithFaker;
+use Tests\TestCase;
 
 class TableTest extends TestCase
 {
@@ -68,8 +69,6 @@ class TableTest extends TestCase
         $tenant = factory(Tenant::class)->create();
 
         $response = $this->getJson("/api/v1/tables/{$table->uuid}?uuid={$tenant->uuid}");
-
-        //$response->dump();
 
         $response->assertStatus(200);
     }
