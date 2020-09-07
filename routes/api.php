@@ -2,7 +2,10 @@
 
 
 
-Route::post("/sanctum/token", "Api\Auth\AuthClientController@auth");
+Route::post("/auth/register", "Api\Auth\RegisterController@store");
+
+//Para gerar o token, autenticar
+Route::post("/auth/token", "Api\Auth\AuthClientController@auth");
 
 Route::group([
     'middleware' => ['auth:sanctum']
@@ -40,7 +43,8 @@ Route::group([
     //////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////Cadastrar novo Cliente(Client)///////////////////////////
     //////////////////////////////////////////////////////////////////////////////////////
-    Route::post("/client", "Auth\RegisterController@store");
+    //Route::post("/client", "Auth\RegisterController@store");
+
 
     Route::post("/orders", "OrderApiController@store");
     Route::get("/orders/{identify}", "OrderApiController@show");

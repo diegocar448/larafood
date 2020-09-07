@@ -17,7 +17,6 @@ class TableRepository implements TableRepositoryInterface
 
     public function getTablesByTenantUuid(string $uuid)
     {
-
         return DB::table($this->table)
             ->join('tenants', 'tenants.id', 'tables.tenant_id')
             ->where("tenants.uuid", $uuid)

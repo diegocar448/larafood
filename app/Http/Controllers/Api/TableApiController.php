@@ -23,7 +23,9 @@ class TableApiController extends Controller
         //     return response()->json(['message' => 'Token Not Found'], 404);
         // }
 
-        $categories = $this->tableService->getTablesByUuid($request->token_company);
+
+
+        $categories = $this->tableService->getTablesByUuid($request->uuid);
 
         return TableResource::collection($categories);
     }

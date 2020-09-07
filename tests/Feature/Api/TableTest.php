@@ -36,7 +36,7 @@ class TableTest extends TestCase
 
         $response = $this->getJson("/api/v1/tables?uuid={$tenant->uuid}");
 
-        //$response->dump();
+        $response->dump();
 
         $response->assertStatus(200);
     }
