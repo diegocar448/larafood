@@ -23,7 +23,8 @@ class AuthClientController extends Controller
 
 
         if (!$client || !Hash::check($request->password, $client->password)) {
-            return response()->json(['message' => "Credenciais Inválidas"], 404);
+            //return response()->json(['message' => "Credenciais Inválidas"], 404);
+            return response()->json(['message' => trans("messages.invalid_credentials")], 404);
         }
 
 
