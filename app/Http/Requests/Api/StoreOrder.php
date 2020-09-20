@@ -31,7 +31,7 @@ class StoreOrder extends FormRequest
                 'required',
                 'exists:tenants,uuid',
             ],
-            'tables' => [
+            'table' => [
                 'nullable',
                 'exists:tables,uuid',
             ],

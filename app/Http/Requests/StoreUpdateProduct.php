@@ -27,9 +27,10 @@ class StoreUpdateProduct extends FormRequest
 
         $rules = [
             'title' => ['required', 'min:3', 'max:255', "unique:products,title,{$id},id"],
+            //'title' => ['required', 'min:3', 'max:255'],
             'description' => ['required', 'min:3', 'max:500'],
             'image' => ['required', 'image'],
-            'price' => "required|regex:/^\d+(\.\d{1,2})?$/",
+            'price' => ["required|regex:/^\d+(\.\d{1,2})?$/"],
         ];
 
         if ($this->method() == "PUT") {

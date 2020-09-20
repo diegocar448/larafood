@@ -11,7 +11,7 @@ $factory->define(Product::class, function (Faker $faker) {
         'tenant_id' => factory(Tenant::class),
         'title' => $faker->unique()->name,
         'description' => $faker->sentence,
-        'image' => 'pizza.png',
+        'image' => $faker->sentence . '.png',
         'price' => 12.9,
 
     ];

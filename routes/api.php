@@ -6,6 +6,7 @@ Route::post("/auth/register", "Api\Auth\RegisterController@store");
 
 //Para gerar o token, autenticar
 Route::post("/auth/token", "Api\Auth\AuthClientController@auth");
+//Route::post("/sanctum/token", "Api\Auth\AuthClientController@auth");
 
 Route::group([
     'middleware' => ['auth:sanctum']

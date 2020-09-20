@@ -43,7 +43,7 @@ class OrderService
         $identify = $this->getIdentifyOrder();
         $total = $this->getTotalOrder($productsOrder);
         $status = 'open';
-        $tenantId = $this->getTenantIdByOrder($order['token_company']);
+        $tenantId = $this->getTenantIdByOrder($order['uuid']);
         $comment = isset($order['comment']) ? $order['comment'] : '';
         $clientId = $this->getClientIdByOrder();
         $tableId = $this->getTableIdByOrder($order['table'] ?? '');
@@ -73,7 +73,7 @@ class OrderService
         // $specialCharacters = str_shuffle('!@#$%*-');
 
         // $characters = $smallLetters.$numbers.$specialCharacters;
-        $characters = $smallLetters.$numbers;
+        $characters = $smallLetters . $numbers;
 
         $identify = substr(str_shuffle($characters), 0, $qtyCaraceters);
 
@@ -86,8 +86,10 @@ class OrderService
 
     private function getProductsByOrder(array $productsOrder): array
     {
+
         $products = [];
         foreach ($productsOrder as $productOrder) {
+
             $product = $this->productRepository->getProductByUuid($productOrder['identify']);
 
             array_push($products, [
@@ -133,3 +135,4 @@ class OrderService
     {
         return auth()->check() ? auth()->user()->id : '';
     }
+}
