@@ -14,13 +14,13 @@ use Illuminate\Support\Facades\Route;
 */
 use App\Models\Client;
 
-Route::get("/teste", function () {
+/* Route::get("/teste", function () {
     $client = Client::first();
 
     $token = $client->createToken('token-teste');
 
     dd($token->plainTextToken);
-});
+}); */
 
 Route::prefix('admin')
     ->namespace('Admin')
@@ -224,6 +224,6 @@ Auth::routes(['register' => true]);
 
 //Auth::routes();
 
-Route::get('/home', function () {
+/* Route::get('/home', function () {
     return view('home');
-})->name('home')->middleware('auth');
+})->name('home')->middleware('auth'); */
