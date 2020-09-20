@@ -28,7 +28,7 @@ class OrderApiController extends Controller
         return new OrderResource($order);
     }
 
-    public function show(TenantFormRequest $request, $identify)
+    public function show(TenantFormRequest $request, string $identify)
     {
 
 

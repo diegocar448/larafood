@@ -2,8 +2,9 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-use Illuminate\Support\Str;
 use App\Models\Order;
+use App\Models\Tenant;
+use Illuminate\Support\Str;
 use Faker\Generator as Faker;
 
 $factory->define(Order::class, function (Faker $faker) {
