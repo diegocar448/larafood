@@ -8,7 +8,7 @@
 </head>
 <body>
     <div style="text-align:center;">
-        {!! QrCode::size(300)->generate($uri); !!}
+        {!! QrCode::size(300)->generate($uri); !!} <br>
         {{$uri}}
     </div>    
     
