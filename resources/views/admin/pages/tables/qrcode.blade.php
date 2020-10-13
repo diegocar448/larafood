@@ -9,6 +9,7 @@
 <body>
     <div style="text-align:center;">
         {!! QrCode::size(300)->generate($uri); !!}
+        {{$uri}}
     </div>    
     
 </body>
